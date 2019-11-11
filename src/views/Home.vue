@@ -1,14 +1,17 @@
 <template>
   <div>
-    <form>
-      <input type="text" v-model="newTodo" placeholder="todo" />
+    <div class="registerBox">
+      <input class="registerBox__input" type="text" v-model="newTodo" placeholder="todo" />
       <br />
-      <button @click="addTodo()">ADD TODO</button>
-    </form>
-    <input type="text" v-model="keyword" placeholder="searchbox" />
-    <div class="todos-container">
+      <button class="registerBox__btn" @click="addTodo()">ADD TODO</button>
+    </div>
+    <div class="searchBox">
+      <i class="fa fa-search searchBox__icon" aria-hidden="true"></i>
+      <input class="searchBox__input" type="text" v-model="keyword" placeholder="searchbox" />
+    </div>
+    <div class="todos-wrap">
       <label
-        class="todos-container__todo"
+        class="todos-wrap__todo"
         v-for="(todo) in searchTodos"
         :key="todo"
         v-bind:class="{ 'todos-container__todo--checked': todo.done }"
@@ -74,8 +77,21 @@ export default {
   display: -ms-flex;
   display: -o-flex;
 }
+.registerBox {
+  width: 300px;
+  height: 40px;
+  margin: 0 auto;
+  border: 1px solid #e8e8e8;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
 
-.todos-container {
+.todos-wrap {
   @include flex-vender;
   flex-direction: column;
   align-items: center;
@@ -88,6 +104,35 @@ export default {
       @extend #{$element};
       color: #85a6c6;
     }
+  }
+}
+input[type="text"]:focus {
+  outline: 0;
+}
+.searchBox {
+  width: 300px;
+  height: 40px;
+  margin: 0 auto;
+  border: 1px solid #e8e8e8;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+  &__icon {
+    width: 16px;
+    font-size: 18px;
+    margin-right: 5px;
+  }
+  &__input {
+    width: calc(100% - 30px);
+    height: 100%;
+    border: none;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    font-size: 16px;
   }
 }
 </style>
