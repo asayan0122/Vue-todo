@@ -1,35 +1,35 @@
 <template>
   <div>
-    <!--ToDo登録-->
+    <!--タスク登録-->
     <div class="registerBox">
       <input class="registerBox__input" type="text" v-model="newTodo" placeholder="todo" />
       <i class="fa fa-plus-square registerBox__todo--add" aria-hidden="true" @click="addTodo()"></i>
     </div>
 
-    <!--ToDo検索-->
+    <!--タスク検索-->
     <div class="searchBox">
       <i class="fa fa-search searchBox__icon" aria-hidden="true"></i>
       <input class="searchBox__input" type="text" v-model="keyword" placeholder="search" />
     </div>
 
-    <!--Task一覧-->
-      <div class="todos-wrap">
-        <label
-          class="todos-wrap__todo"
-          v-for="(todo) in searchTodos"
-          :key="todo"
-          v-bind:class="{ 'todos-wrap__todo--done': todo.done }"
-        >
-          <input class="todos-wrap__todo--input" type="checkbox" v-model="todo.done" />
-          <label class="todos-wrap__todo--label">{{ todo.text }}</label>
+    <!--タスク一覧-->
+    <div class="todos-wrap">
+      <label
+        class="todos-wrap__todo"
+        v-for="(todo) in searchTodos"
+        :key="todo"
+        v-bind:class="{ 'todos-wrap__todo--done': todo.done }"
+      >
+        <input class="todos-wrap__todo--input" type="checkbox" v-model="todo.done" />
+        <label class="todos-wrap__todo--label">{{ todo.text }}</label>
 
-          <i
-            class="fa fa-trash icon-trash todos-wrap__todo--delete"
-            aria-hidden="true"
-            @click="removeTodo()"
-          ></i>
-        </label>
-      </div>
+        <i
+          class="fa fa-trash icon-trash todos-wrap__todo--delete"
+          aria-hidden="true"
+          @click="removeTodo()"
+        ></i>
+      </label>
+    </div>
   </div>
 </template>
 
@@ -38,8 +38,8 @@ export default {
   data: function () {
     return {
       todos: [
-        { text: 'task', done: false },
-        { text: 'done_task', done: true },
+        { text: 'sample_task', done: false },
+        { text: 'sample_done_task', done: true },
       ],
       newTodo: "",
       keyword: "",
@@ -69,7 +69,7 @@ export default {
       var todos = [];
       for (var i in this.todos) {
         var todo = this.todos[i];
-        if (todo.text.indexOf(this.keyword, 1) !== -1) {
+        if (todo.text.indexOf(this.keyword) !== -1) {
           todos.push(todo);
         }
       }
@@ -77,10 +77,8 @@ export default {
     }
   }
 }
-
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 input[type="text"]:focus {
   outline: 0;
@@ -113,6 +111,7 @@ input[type="text"]:focus {
     height: 90%;
     border: none;
     font-size: 16px;
+    color: #242424;
   }
   &__todo--add {
     float: right;
@@ -133,7 +132,7 @@ input[type="text"]:focus {
   align-items: center;
   width: 300px;
   height: 40px;
-  font-size: 16px;
+  font-size: 10px;
   margin: 0 auto;
   border: 1px solid #e8e8e8;
   border-radius: 20px;
@@ -182,7 +181,7 @@ input[type="text"]:focus {
       text-decoration: line-through;
     }
     &--label {
-      font-size: 16px;
+      font-size: 14px;
       margin-left: 10px;
     }
     &--delete {
@@ -201,5 +200,4 @@ input[type="text"]:focus {
     }
   }
 }
-
 </style>

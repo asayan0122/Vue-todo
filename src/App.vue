@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
+      <h3>ToDo</h3>
     </div>
     <router-view />
   </div>
@@ -10,7 +9,7 @@
 
 <style lang="scss">
 body {
-  background: #9c9c9c;
+  background: #a8a8a8;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -19,7 +18,6 @@ body {
   text-align: center;
   color: #2c3e50;
 }
-
 #nav {
   padding: 30px;
 
