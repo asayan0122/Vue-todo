@@ -3,8 +3,7 @@
     <!--ToDo登録-->
     <div class="registerBox">
       <input class="registerBox__input" type="text" v-model="newTodo" placeholder="todo" />
-      <br />
-      <button class="registerBox__btn" @click="addTodo()">ADD TODO</button>
+      <i class="fa fa-plus-square registerBox__todo--add" aria-hidden="true" @click="addTodo()"></i>
     </div>
 
     <!--ToDo検索-->
@@ -13,23 +12,24 @@
       <input class="searchBox__input" type="text" v-model="keyword" placeholder="search" />
     </div>
 
-    <!--タスク一覧-->
-    <div class="todos-wrap">
-      <label
-        class="todos-wrap__todo"
-        v-for="(todo) in searchTodos"
-        :key="todo"
-        v-bind:class="{ 'todos-wrap__todo--done': todo.done }"
-      >
-        <input class="todos-wrap__todo--input" type="checkbox" v-model="todo.done" />
-        <label class="todos-wrap__todo--label">{{ todo.text }}</label>
-        <i
-          class="fa fa-trash icon-trash todos-wrap__todo--delete"
-          aria-hidden="true"
-          @click="removeTodo()"
-        ></i>
-      </label>
-    </div>
+    <!--Task一覧-->
+      <div class="todos-wrap">
+        <label
+          class="todos-wrap__todo"
+          v-for="(todo) in searchTodos"
+          :key="todo"
+          v-bind:class="{ 'todos-wrap__todo--done': todo.done }"
+        >
+          <input class="todos-wrap__todo--input" type="checkbox" v-model="todo.done" />
+          <label class="todos-wrap__todo--label">{{ todo.text }}</label>
+
+          <i
+            class="fa fa-trash icon-trash todos-wrap__todo--delete"
+            aria-hidden="true"
+            @click="removeTodo()"
+          ></i>
+        </label>
+      </div>
   </div>
 </template>
 
@@ -46,6 +46,7 @@ export default {
     }
   },
   methods: {
+    //タスク追加
     addTodo: function () {
       var text = this.newTodo && this.newTodo.trim()
       if (!text) {
@@ -57,16 +58,18 @@ export default {
       })
       this.newTodo = ''
     },
+    //タスク削除
     removeTodo: function () {
       this.todos.splice(this.todos.indexOf(), 1)
     }
   },
   computed: {
+    //タスク検索
     searchTodos: function () {
       var todos = [];
       for (var i in this.todos) {
         var todo = this.todos[i];
-        if (todo.text.indexOf(this.keyword,1) !== -1) {
+        if (todo.text.indexOf(this.keyword, 1) !== -1) {
           todos.push(todo);
         }
       }
@@ -94,21 +97,43 @@ input[type="text"]:focus {
   align-items: center;
   width: 300px;
   height: 40px;
+  font-size: 16px;
   margin: 0 auto;
   border: 1px solid #e8e8e8;
-  border-radius: 20px;
+  border-radius: 3px;
   margin-bottom: 15px;
+  padding: 5px 10px;
   background: #fff;
   display: flex;
   align-items: center;
-  padding: 0 10px;
   box-sizing: border-box;
+  overflow: hidden;
+  &__input {
+    width: 280px;
+    height: 90%;
+    border: none;
+    font-size: 16px;
+  }
+  &__todo--add {
+    float: right;
+    top: 10px;
+    color: #977c77;
+    backface-visibility: hidden;
+  }
+  &__todo--add:hover {
+    cursor: pointer;
+    color: #00923d;
+    transform: scale(1.3);
+    transition: 0.4s transform;
+    backface-visibility: hidden;
+  }
 }
 .searchBox {
   @include flex-vender;
   align-items: center;
   width: 300px;
   height: 40px;
+  font-size: 16px;
   margin: 0 auto;
   border: 1px solid #e8e8e8;
   border-radius: 20px;
@@ -119,8 +144,6 @@ input[type="text"]:focus {
   padding: 0 10px;
   box-sizing: border-box;
   &__icon {
-    width: 16px;
-    font-size: 18px;
     margin-right: 5px;
   }
   &__input {
@@ -138,9 +161,17 @@ input[type="text"]:focus {
   align-items: center;
   width: 300px;
   margin: 0 auto;
+  &__todo:hover {
+    transform: scale(1.05);
+  }
   &__todo {
-    width: 300px;
+    border-radius: 3px;
+    transition: 0.4s transform;
+    width: 280px;
     height: 40px;
+    padding: 0 10px;
+    border-top: solid 1px #e8e8e8;
+    border-bottom: solid 1px #e8e8e8;
     line-height: 40px;
     text-align: left;
     background: white;
@@ -157,7 +188,6 @@ input[type="text"]:focus {
     &--delete {
       float: right;
       top: 10px;
-      right: 15px;
       position: relative;
       color: #977c77;
       backface-visibility: hidden;
@@ -171,4 +201,5 @@ input[type="text"]:focus {
     }
   }
 }
+
 </style>
