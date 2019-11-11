@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <h3>ToDo</h3>
+      <h2>Vue_ToDos</h2>
     </div>
     <router-view />
   </div>
@@ -9,14 +9,14 @@
 
 <style lang="scss">
 body {
-  background: #a8a8a8;
+  background: #e4e4e4;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #41b883;
 }
 #nav {
   padding: 30px;

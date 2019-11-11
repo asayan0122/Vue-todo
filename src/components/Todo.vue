@@ -2,7 +2,7 @@
   <div>
     <!--タスク登録-->
     <div class="registerBox">
-      <input class="registerBox__input" type="text" v-model="newTodo" placeholder="todo" />
+      <input class="registerBox__input" type="text" v-model="newTodo" placeholder="ToDo" />
       <i class="fa fa-plus-square registerBox__todo--add" aria-hidden="true" @click="addTodo()"></i>
     </div>
 
@@ -110,8 +110,8 @@ input[type="text"]:focus {
     width: 280px;
     height: 90%;
     border: none;
-    font-size: 16px;
-    color: #242424;
+    font-size: 14px;
+    color: #444444;
   }
   &__todo--add {
     float: right;
@@ -144,6 +144,8 @@ input[type="text"]:focus {
   box-sizing: border-box;
   &__icon {
     margin-right: 5px;
+    color: #444444;
+    font-size:14px;
   }
   &__input {
     width: calc(100% - 30px);
@@ -151,7 +153,7 @@ input[type="text"]:focus {
     border: none;
     box-sizing: border-box;
     padding: 5px 10px;
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 .todos-wrap {
@@ -177,7 +179,7 @@ input[type="text"]:focus {
     $element: #{&};
     &--done {
       @extend #{$element};
-      color: #140f5c;
+      color: #35495e;
       text-decoration: line-through;
     }
     &--label {
