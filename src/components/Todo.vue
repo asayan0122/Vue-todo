@@ -22,11 +22,10 @@
       >
         <input class="todos-wrap__todo--input" type="checkbox" v-model="todo.done" />
         <label class="todos-wrap__todo--label">{{ todo.text }}</label>
-
         <i
           class="fa fa-trash icon-trash todos-wrap__todo--delete"
           aria-hidden="true"
-          @click="removeTodo()"
+          @click="removeTodo(todo)"
         ></i>
       </label>
     </div>
@@ -59,9 +58,9 @@ export default {
       this.newTodo = ''
     },
     //タスク削除
-    removeTodo: function () {
-      this.todos.splice(this.todos.indexOf(), 1)
-    }
+    removeTodo: function(todo){
+      this.todos.splice(this.todos.indexOf(todo), 1);
+    },
   },
   computed: {
     //タスク検索
